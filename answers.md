@@ -31,7 +31,7 @@ For example if we had denominations of (1, 6, 8) and we wanted to convert 12 dol
 Based on the denominations above denominations one could construct an optimal table as such:
 
 | Dollar Amount | $1 Coin | $6 Coin | $8 Coin |
-|---------------|---------| --------|---------|
+|---------------|---------|---------|---------|
 | 1             | 1       | 0       | 0       |
 | 2             | 2       | 0       | 0       |
 | 3             | 3       | 0       | 0       |
@@ -44,10 +44,18 @@ Based on the denominations above denominations one could construct an optimal ta
 | 10            | 2       | 0       | 1       |
 | 11            | 3       | 0       | 1       |
 | 12            | 0       | 2       | 0       |
-| 13            | 5       | 0       | 1       |
+| 13            | 1       | 2       | 0       |
 | 14            | 0       | 1       | 1       |
 | 15            | 1       | 1       | 1       |
 | 16            | 0       | 0       | 2       |
+| 17            | 1       | 0       | 2       |
+| 18            | 0       | 3       | 0       |
+| 19            | 1       | 3       | 0       |
+| 20            | 2       | 3       | 0       |
+| 21            | 1       | 2       | 1       |
+| 22            | 0       | 1       | 2       |
+| 23            | 1       | 1       | 2       |
+| 24            | 0       | 0       | 3       |
 
 With these values solved the problem would be to split a number into k amounts of each lookup.
 This means that there are 16 distinct nodes to consider.  This means that there would be O(2*max-denomination) work and O(n) span because the worst case would be the bank only having $1 coins to convert.

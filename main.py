@@ -23,7 +23,7 @@ def fast_MED(S, T, MED={}):
 
 
 def memorization(f, MED, a):
-    if MED[a] in MED.keys():
+    if a in MED.keys():
         return MED[a]
     else:
         MED.update((a, f(a)))
@@ -43,4 +43,4 @@ def test_align():
         align_S, align_T = fast_align_MED(S, T)
         assert (align_S == alignments[i][0] and align_T == alignments[i][1])
 
-print(MED("book", "back"))
+
