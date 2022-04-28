@@ -5,7 +5,7 @@ test_cases = [('book', 'back'), ('kookaburra', 'kookybird'), ('elephant', 'relev
 alignments = [('book', 'back'), ('kookaburra', 'kookybird-'), ('relev-ant','-elephant'), ('AAAGAATTCA', 'AAA---T-CA')]
 
 def MED(S, T):
-    # TO DO - modify to account for insertions, deletions and substitutions
+    # TODO - modify to account for insertions, deletions and substitutions
     if (S == ""):
         return(len(T))
     elif (T == ""):
@@ -18,8 +18,16 @@ def MED(S, T):
 
 
 def fast_MED(S, T, MED={}):
-    # TODO -  implement memoization
+    #if len(S) == 0 or len(T) == 0:
     pass
+
+
+def memorization(f, MED, a):
+    if MED[a] in MED.keys():
+        return MED[a]
+    else:
+        MED.update((a, f(a)))
+        return MED[a]
 
 def fast_align_MED(S, T, MED={}):
     # TODO - keep track of alignment
@@ -34,3 +42,5 @@ def test_align():
         S, T = test_cases[i]
         align_S, align_T = fast_align_MED(S, T)
         assert (align_S == alignments[i][0] and align_T == alignments[i][1])
+
+print(MED("book", "back"))
