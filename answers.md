@@ -30,33 +30,40 @@ For example if we had denominations of (1, 6, 8) and we wanted to convert 12 dol
 - **2b.**
 Based on the denominations above denominations one could construct an optimal table as such:
 
-| Dollar Amount | $1 Coin | $6 Coin | $8 Coin |
-|---------------|---------|---------|---------|
-| 1             | 1       | 0       | 0       |
-| 2             | 2       | 0       | 0       |
-| 3             | 3       | 0       | 0       |
-| 4             | 4       | 0       | 0       |
-| 5             | 5       | 0       | 0       |
-| 6             | 0       | 1       | 0       |
-| 7             | 1       | 1       | 0       |
-| 8             | 0       | 0       | 1       |
-| 9             | 1       | 0       | 1       |
-| 10            | 2       | 0       | 1       |
-| 11            | 3       | 0       | 1       |
-| 12            | 0       | 2       | 0       |
-| 13            | 1       | 2       | 0       |
-| 14            | 0       | 1       | 1       |
-| 15            | 1       | 1       | 1       |
-| 16            | 0       | 0       | 2       |
-| 17            | 1       | 0       | 2       |
-| 18            | 0       | 3       | 0       |
-| 19            | 1       | 3       | 0       |
-| 20            | 2       | 3       | 0       |
-| 21            | 1       | 2       | 1       |
-| 22            | 0       | 1       | 2       |
-| 23            | 1       | 1       | 2       |
-| 24            | 0       | 0       | 3       |
+| Dollar Amount | $1 Coin | $6 Coin | $8 Coin | minimum |
+|---------------|---------|---------|---------|---------|
+| 1             | 1       | 0       | 0       | 1       |
+| 2             | 2       | 0       | 0       | 2       |
+| 3             | 3       | 0       | 0       | 3       |
+| 4             | 4       | 0       | 0       | 4       |
+| 5             | 5       | 0       | 0       | 5       |
+| 6             | 6       | 1       | 0       | 1       |
+| 7             | 7       | 2       | 0       | 2       |
+| 8             | 8       | 3       | 1       | 1       |
+| 10            | 10      | 5       | 3       | 3       |
+| 11            | 11      | 6       | 4       | 4       |
+| 12            | 12      | 2       | 5       | 2       |
+| 13            | 13      | 3       | 6       | 3       |
+| 14            | 14      | 4       | 2       | 2       |
+| 15            | 15      | 5       | 3       | 3       |
+| 16            | 16      | 6       | 2       | 2       |
+| 17            | 17      | 7       | 3       | 3       |
+| 18            | 18      | 3       | 4       | 3       |
+| 19            | 19      | 4       | 5       | 4       |
+| 20            | 20      | 5       | 3       | 3       |
+| 21            | 21      | 6       | 4       | 4       |
+| 22            | 22      | 7       | 5       | 5       |
+| 23            | 23      | 8       | 6       | 6       |
+| 24            | 24      | 4       | 3       | 3       |
 
-With these values solved the problem would be to split a number into k amounts of each lookup.
-This means that there are 16 distinct nodes to consider.  This means that there would be O(2*max-denomination) work and O(n) span because the worst case would be the bank only having $1 coins to convert.
+if Dk(largest denomination)
+(n-Dk, k) + 1
+
+if Dk cannot be used
+(n, k-1)
+
+min((n-Dk, k) + 1, (n, k[1:]))
+
+Given that n = the amount of money and k = the number of possible denomination
+The DAG would have n*k nodes meaning that the work would be O(n*k) with a span of O(n).
 
