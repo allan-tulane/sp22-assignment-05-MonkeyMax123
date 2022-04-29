@@ -44,17 +44,17 @@ def fast_align_MED(S, T, MED={}):
                 T_prime = T[j] + T_prime
                 return S_prime, T_prime
             elif j == 0:
-                left = MED_prime[i-1, j]
+                left = MED_prime[i - 1, j]
                 up = MED_prime[i, j]
-                diagonal = MED_prime[i-1, j]
+                diagonal = MED_prime[i - 1, j]
             elif i == 0:
                 left = MED_prime[i, j]
-                up = MED_prime[i, j-1]
-                diagonal = MED_prime[i, j-1]
+                up = MED_prime[i, j - 1]
+                diagonal = MED_prime[i, j - 1]
             else:
-                left = MED_prime[i-1, j]
-                up = MED_prime[i, j-1]
-                diagonal = MED_prime[i - 1, j-1]
+                left = MED_prime[i - 1, j]
+                up = MED_prime[i, j - 1]
+                diagonal = MED_prime[i - 1, j - 1]
             if left <= up and left <= diagonal:
                 S_prime = S[i] + S_prime
                 T_prime = '-' + T_prime
@@ -70,6 +70,7 @@ def fast_align_MED(S, T, MED={}):
                 j -= 1
     return S_prime, T_prime
 
+
 def test_MED():
     for S, T in test_cases:
         assert fast_MED(S, T) == MED(S, T)
@@ -80,8 +81,3 @@ def test_align():
         S, T = test_cases[i]
         align_S, align_T = fast_align_MED(S, T)
         assert (align_S == alignments[i][0] and align_T == alignments[i][1])
-
-
-str1 = 'kookaburra'
-str2 = 'kookybird'
-print(fast_align_MED(str1, str2))
